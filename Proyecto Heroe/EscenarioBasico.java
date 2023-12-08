@@ -13,7 +13,9 @@ public class EscenarioBasico extends Escenario {
      *                  agregarse
      */
     public EscenarioBasico(String nombre, Integer capacidad) {
-        // TODO - Implementar el constructor
+        //Done - Implementar el constructor
+        super(nombre, capacidad);
+        this.personajes = new ArrayList<>();
     }
 
     /**
@@ -25,7 +27,12 @@ public class EscenarioBasico extends Escenario {
      */
     @Override
     public void visitar(PersonajeJugador p) {
-        // TODO - Implementar el metodo
+        // Done - Implementar el metodo
+        if(p.getElementoActual().getNombre().equals("Arma")) {
+            throw new IllegalStateException();
+        }
+        this.getVisitantes().add(p);
+        
     }
 
     /**
@@ -35,7 +42,11 @@ public class EscenarioBasico extends Escenario {
      * @throws IllegalStateException si el escenario esta lleno y no puede agregar mas personajes
      */
     public void addPersonaje (PersonajeNoJugador p) {
-        // TODO - Implementar el metodo
+        // Done - Implementar el metodo
+        if(this.getCapacidad() <= personajes.size()) {
+            throw new IllegalStateException();
+        }
+        this.getVisitantes().add(p);
     }
 
     /**
@@ -45,6 +56,7 @@ public class EscenarioBasico extends Escenario {
      * @return la lista de personajes no jugadores en el escenario
      */
     public ArrayList<PersonajeNoJugador> getPersonajes() {
-        // TODO - Implementar el metodo
+        // Done - Implementar el metodo
+        return personajes;
     }
 }
