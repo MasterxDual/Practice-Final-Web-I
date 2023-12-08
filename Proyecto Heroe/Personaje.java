@@ -13,7 +13,7 @@ public abstract class Personaje {
 
     public void recibirDanio (Integer danio) {
       vida -= danio;
-    };
+    }
 
     public String getNombre() {
         return nombre;
