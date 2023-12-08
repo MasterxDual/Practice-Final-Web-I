@@ -54,10 +54,6 @@ public class Receta {
      */
     public int getCantidadDeIngredienteRequerida (Ingrediente ingrediente){
         //Done: Implementar metodo
-        /* Va este o el otro?
-        if(!ingrediente.equals(Ingrediente.CAFE) && !ingrediente.equals(Ingrediente.LECHE) && !ingrediente.equals(Ingrediente.AZUCAR) && !ingrediente.equals(Ingrediente.CACAO) && !ingrediente.equals(Ingrediente.AGUA)) {
-            return 0;
-        }*/
         if(ingredientes.get(ingrediente) == null) {
             return 0;
         }
