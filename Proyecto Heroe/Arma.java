@@ -11,7 +11,10 @@ public class Arma extends Elemento {
      * @param tipoMunicion
      */
     public Arma (String nombre, TipoMunicion tipoMunicion) {
-        // TODO - Implementar el constructor
+        // Done - Implementar el constructor
+        super(nombre);
+        this.tipoMunicion = tipoMunicion;
+        this.municiones = new ArrayList<>();
     }
 
     /**
@@ -23,7 +26,11 @@ public class Arma extends Elemento {
      *           tipo de municion del arma.
      */
     public void cargar (Municion m) throws MunicionNoValidaException {
-        // TODO - Implementar el metodo
+        // Done - Implementar el metodo
+        if(!tipoMunicion.equals(m.getTipo())) {
+            throw new MunicionNoValidaException("Tipo de municion incompatible");
+        }
+        municiones.add(m);
     }
 
     /**
@@ -34,7 +41,12 @@ public class Arma extends Elemento {
      * @throws ArmaDescargadaException si no hay municiones disponibles
      */
     public Integer disparar () throws ArmaDescargadaException {
-        // TODO - Implementar el metodo
+        // Done - Implementar el metodo
+        if(!this.isCargada()) {
+            throw new ArmaDescargadaException("El arma no contiene municiones");
+        }
+        
+        return municiones.remove(0).getDanio();
     }
 
     /**
@@ -42,6 +54,7 @@ public class Arma extends Elemento {
      * @return true si hay municiones cargadas, false de lo contrario
      */
     public Boolean isCargada() {
-        // TODO - Implementar el metodo
+        // Done - Implementar el metodo
+        return !municiones.isEmpty();
     }
 }
