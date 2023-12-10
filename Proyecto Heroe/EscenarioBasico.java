@@ -28,7 +28,7 @@ public class EscenarioBasico extends Escenario {
     @Override
     public void visitar(PersonajeJugador p) {
         // Done - Implementar el metodo
-        if(p.getElementoActual().getNombre().equals("Arma")) {
+        if(p.getElementoActual() instanceof Arma) {
             throw new IllegalStateException();
         }
         this.getVisitantes().add(p);
