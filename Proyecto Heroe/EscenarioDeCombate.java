@@ -24,7 +24,15 @@ public class EscenarioDeCombate extends Escenario {
      */
     @Override
     public void visitar(PersonajeJugador p) {
-        // TODO - Implementar el metodo
+        // Done - Implementar el metodo
+        if(!enemigos.isEmpty()) {
+            if(p.getElementoActual() instanceof Arma) {
+                simularBatalla(p);
+                p.subirNivel();
+                this.getVisitantes().add(p);
+            }
+            throw new IllegalStateException();
+        }
     }
 
     /**
@@ -36,7 +44,13 @@ public class EscenarioDeCombate extends Escenario {
      * nombre en la lista
      */
     public void addPersonaje (PersonajeNoJugadorGuerrero p) {
-        // TODO - Implementar el metodo
+        // Done - Implementar el metodo
+        for(PersonajeNoJugadorGuerrero personaje : enemigos) {
+            if(personaje.getNombre().equals(p.getNombre())) {
+                throw new IllegalArgumentException();
+            }
+        }
+        enemigos.add(p);
     }
 
     /**
@@ -48,7 +62,17 @@ public class EscenarioDeCombate extends Escenario {
      * @throws IllegalArgumentException si el personaje no esta en la lista
      */
     public PersonajeNoJugadorGuerrero removePersonaje (String name) {
-        // TODO - Implementar el metodo
+        // Done - Implementar el metodo
+        int indicePersonajeAEliminar = -1;
+        for(int l = 0; l < enemigos.size(); l++) {
+            if(enemigos.get(l).getNombre().equals(name)) {
+                indicePersonajeAEliminar = l;    
+            }
+        }
+        if(indicePersonajeAEliminar == -1) {
+            throw new IllegalArgumentException();
+        }
+        return enemigos.remove(indicePersonajeAEliminar);
     }
 
     /**
@@ -101,6 +125,7 @@ public class EscenarioDeCombate extends Escenario {
      * @return la lista de enemigos
      */
     public ArrayList<PersonajeNoJugadorGuerrero> getEnemigos() {
-        // TODO - Implementar el metodo
+        // Done - Implementar el metodo
+        return enemigos;
     }
 }
