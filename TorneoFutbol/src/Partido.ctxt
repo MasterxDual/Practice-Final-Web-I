@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.target=Partido
+comment1.params=equipo1\ equipo2
+comment1.target=Partido(Equipo,\ Equipo)
+comment1.text=\n\ Crea\ cada\ encuentro\ en\ base\ a\ los\ equipos\ indicados\ y\n\ establece\ el\ estado\ del\ partido\ a\ NoDisputado().\n\ Los\ goles\ se\ registran\ en\ un\ mapa\ donde\ la\ clave\ es\ el\n\ equipo\ y\ el\ valor\ es\ la\ cantidad\ de\ goles.\n\ \n\ @param\ equipo1\ Uno\ de\ los\ equipos.\n\ @param\ equipo2\ El\ otro\ de\ los\ equipos.\n
+comment2.params=e
+comment2.target=void\ addGol(Equipo)
+comment2.text=\n\ Anota\ un\ gol\ al\ equipo\ que\ lo\ haya\ realizado\ a\ trav\u00E9s\n\ del\ objeto\ en\ el\ campo\ estado.\ Tambien\ debe\ registrar\n\ el\ gol\ en\ sus\ estadisticas\ el\ equipo\ correspondiente.\n\ \n\ @param\ e\ El\ equipo\ que\ hizo\ el\ gol.\n
+comment3.params=
+comment3.target=void\ setEnJuego()
+comment3.text=\n\ Establece\ el\ estado\ del\ partido\ a\ EnJuego.\n
+comment4.params=
+comment4.target=void\ setFinalizado()
+comment4.text=\n\ Establece\ el\ estado\ del\ partido\ en\ Finalizado\n\ y\ actualiza\ estadisticas\ de\ partidos\ disputados\n\ y\ puntajes\ de\ cada\ equipo.\n
+comment5.params=
+comment5.target=boolean\ isFinalizado()
+comment5.text=\n\ Devuelve\ verdadero\ si\ el\ partido\ est\u00E1\ en\ estado\ finalizado.\n\ \n\ @return\ boolean\ true\ si\ el\ partido\ ha\ finalizado.\n
+comment6.params=
+comment6.target=java.lang.String\ toString()
+numComments=7

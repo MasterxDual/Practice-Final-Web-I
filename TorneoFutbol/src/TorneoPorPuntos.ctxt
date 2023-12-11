@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=TorneoPorPuntos
+comment1.params=equipos
+comment1.target=void\ InicializarTorneo(java.util.List)
+comment1.text=\n\ Inicializa\ el\ Torneo\ con\ los\ equipos\ indicados.\n\ \n\ @param\ equipos\ Los\ equipos\ del\ torneo.\n
+comment2.params=
+comment2.target=void\ generarFixture()
+numComments=3
