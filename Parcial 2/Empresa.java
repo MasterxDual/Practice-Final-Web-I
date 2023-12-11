@@ -56,13 +56,13 @@ public class Empresa {
      * @return el medidor creado
      */
     public Medidor nuevoMedidor(TipoMedidor tipo, CoordenadaGPS pos){
-        if(tipo == TipoMedidor.COMERCIAL) {
+        if(tipo.equals(TipoMedidor.COMERCIAL)) {
             Medidor medidor = new MedidorComercial(pos);
 
             medidores.add(medidor);
             return medidor;
         }
-        if(tipo == TipoMedidor.DOMICILIARIO) {
+        if(tipo.equals(TipoMedidor.DOMICILIARIO)) {
             Medidor medidor = new MedidorDomiciliario(pos);
 
             medidores.add(medidor);
@@ -79,13 +79,14 @@ public class Empresa {
      */
     public Cliente nuevoCliente (String nombre) {
         Cliente cliente = new Cliente(nombre);
+
+        for (Cliente clienteLista : clientes) {
+            if(clienteLista.getNombre().equals(nombre)) {
+                throw new IllegalStateException();
+            }
+        }
         clientes.add(cliente);
         return cliente;
-        
-        /*Falta desarrollar excepcion (esta incompleta): 
-        if(clientes.contains(cliente)) {
-            throw new IllegalStateException();
-        }*/
     }
 
     /**
@@ -97,9 +98,8 @@ public class Empresa {
     public void asociarMedidor(Cliente c, Medidor m){
         if(c.getMedidorAsociado() != null) {
             throw new IllegalStateException();
-        } else {
-            c.asociarMedidor(m);
         }
+        c.asociarMedidor(m);
     }
     
     
@@ -109,11 +109,13 @@ public class Empresa {
      * @param c el cliente sobre el que desasociar
      */
     public void disociarMedidor (Cliente c){
-        if(c.getMedidorAsociado() != null) {
+        Medidor medidorCliente = c.getMedidorAsociado();
+
+        if(medidorCliente != null) {
+            medidores.remove(medidorCliente);
             c.removerMedidor();
-            medidores.remove(c.getMedidorAsociado());
         } else {
-            System.err.println("El cliente pasado por parametro no existe");
+            System.err.println("El cliente no tiene asociado un medidor");
         }
     }
     
@@ -149,8 +151,26 @@ public class Empresa {
      * @throws IllegalStateException si no hay lecturas en el periodo 
      */
     public int consumoPeriodo (Cliente c, Fecha desde, Fecha hasta){
-        // TODO Implementar el metodo
-        return -1;
+        // Done Implementar el metodo
+        boolean hayLecturas = false;
+        int consumoTotal = 0;
+        List<Lectura> lecturasCliente = c.getLecturas();
+        
+        if(desde.compareTo(hasta) > 0) {
+            throw new IllegalArgumentException();
+        }
+        System.out.println("Fecha (dia-anio) | Consumo");
+        for(Lectura lecturaCliente : lecturasCliente) {
+            if((lecturaCliente.getFechaDeLectura().compareTo(desde) > 0 || lecturaCliente.getFechaDeLectura().compareTo(desde) == 0) && (lecturaCliente.getFechaDeLectura().compareTo(hasta) < 0 || lecturaCliente.getFechaDeLectura().compareTo(desde) == 0)) {
+                System.out.println(lecturaCliente.getFechaDeLectura().getDiaDelAnio() + "-" + lecturaCliente.getFechaDeLectura().getAnio() + "\t| " + lecturaCliente.getValorDeLectura());
+                consumoTotal += lecturaCliente.getValorDeLectura();
+                hayLecturas = true;
+            }
+        }
+        if(!hayLecturas) {
+            throw new IllegalStateException();
+        }
+        return consumoTotal;
     }
     
 }
