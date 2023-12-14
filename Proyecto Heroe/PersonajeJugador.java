@@ -136,17 +136,20 @@ public class PersonajeJugador extends Personaje implements Guerrero {
          */
         @Override
         public void asignarMision(PersonajeJugador p) {
-            // TODO - Implementar el metodo
+            // Done - Implementar el metodo
+            p.setEstadoMision(new MisionAsignada());
         }
 
         @Override
         public void aceptarMision(PersonajeJugador p) {
-            // TODO - Implementar el metodo
+            // Done - Implementar el metodo
+            throw new IllegalStateException();
         }
 
         @Override
         public void cumplirMision(PersonajeJugador p) {
-            // TODO - Implementar el metodo
+            // Done - Implementar el metodo
+            throw new IllegalStateException();
         }
 
     }
@@ -154,7 +157,8 @@ public class PersonajeJugador extends Personaje implements Guerrero {
     class MisionAsignada extends EstadoMision {
         @Override
         public void asignarMision(PersonajeJugador p) {
-            // TODO - Implementar el metodo
+            // Done - Implementar el metodo
+            throw new IllegalStateException();
         }
 
         /**
@@ -166,28 +170,35 @@ public class PersonajeJugador extends Personaje implements Guerrero {
          */
         @Override
         public void aceptarMision(PersonajeJugador p) {
-            // TODO - Implementar el metodo
+            // Done - Implementar el metodo
+            if(p.getNivel() < p.getMision().getNivelRequerido()) {
+                throw new IllegalStateException();
+            }
+            p.setEstadoMision(new MisionAceptada());
         }
 
         @Override
         public void cumplirMision(PersonajeJugador p) {
-            // TODO - Implementar el metodo
+            // Done - Implementar el metodo
+            throw new IllegalStateException();
         }
     }
 
     class MisionAceptada extends EstadoMision {
         @Override
         public void asignarMision(PersonajeJugador p) {
-            // TODO - Implementar el metodo
+            // Done - Implementar el metodo
+            throw new IllegalStateException();
         }
 
         @Override
         public void aceptarMision(PersonajeJugador p) {
-            // TODO - Implementar el metodo
+            // Done - Implementar el metodo
+            throw new IllegalStateException();
         }
 
         /**
-         * Valida que el personaje tenga asignada la mision y
+         * Valida que el personaje tenga aceptada la mision y
          * el cumplimiento de la misma. Si se cumplen ambas condiciones
          * cambia su estado a Finalizada.
          * Si la mision no esta completa arroja IllegalArgumentException.
@@ -195,23 +206,30 @@ public class PersonajeJugador extends Personaje implements Guerrero {
          */
         @Override
         public void cumplirMision(PersonajeJugador p) {
-            // TODO - Implementar el metodo
+            // Done - Implementar el metodo
+            if(!p.getMision().validarCumplimiento(p)) {
+                throw new IllegalArgumentException();
+            }
+            p.setEstadoMision(new MisionFinalizada());
         }
     }
 
     class MisionFinalizada extends EstadoMision {
         @Override
         public void asignarMision(PersonajeJugador p) {
-            // TODO - Implementar el metodo
+            // Done - Implementar el metodo
+            throw new IllegalStateException();
         }
 
         @Override
         public void aceptarMision(PersonajeJugador p) {
-            // TODO - Implementar el metodo
+            // Done - Implementar el metodo
+            throw new IllegalStateException();
         }
         @Override
         public void cumplirMision(PersonajeJugador p) {
-            // TODO - Implementar el metodo
+            // Done - Implementar el metodo
+            throw new IllegalStateException();
         }
     }
 }
